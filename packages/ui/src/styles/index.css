@@ -1,0 +1,11 @@
+/**
+ * @repo/ui 样式入口
+ *
+ * 导入顺序：
+ * 1. Design Tokens
+ * 2. 全局样式
+ * 3. Tailwind CSS (如使用)
+ */
+
+@import './tokens.css';
+@import './globals.css';

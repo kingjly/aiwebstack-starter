@@ -1,0 +1,55 @@
+// Prisma Schema - 数据模型单一真相源
+//
+// AI 开发规则：
+// 1. 所有数据模型变更必须先修改此文件
+// 2. 运行 pnpm --filter @repo/db db:push 同步到数据库
+// 3. tRPC 路由会自动从 Schema 生成类型
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ==================== 示例模型 ====================
+// AI 可以基于这些示例快速创建新模型
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  role      Role     @default(USER)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // 关联关系
+  posts     Post[]
+
+  @@map("users")
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  content     String?
+  published   Boolean  @default(false)
+  authorId    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // 关联关系
+  author      User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@index([authorId])
+  @@map("posts")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
