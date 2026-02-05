@@ -5,7 +5,6 @@
  *
  * AI 使用：import { FormCard } from '@repo/ui/blocks/form-card'
  */
-import { type ComponentProps } from 'react';
 import { cn } from '@repo/utils';
 
 export interface FormCardProps {

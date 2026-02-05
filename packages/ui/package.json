@@ -5,8 +5,8 @@
   "type": "module",
   "sideEffects": false,
   "exports": {
-    "./components/*": "./src/components/*/index.ts",
-    "./blocks/*": "./src/blocks/*/index.ts",
+    "./components/*": "./src/components/*/index.tsx",
+    "./blocks/*": "./src/blocks/*/index.tsx",
     "./styles": "./src/styles/index.css"
   },
   "scripts": {
@@ -15,15 +15,16 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@base-ui-components/react": "^1.0.0-alpha.1",
+    "@base-ui/react": "^1.1.0",
     "@repo/utils": "workspace:*",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "typescript": "^5.7.2"
+    "typescript": "^5.9.3"
   }
 }

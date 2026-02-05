@@ -14,8 +14,8 @@ export type { ButtonProps } from './components/button';
 export { Input } from './components/input';
 export type { InputProps } from './components/input';
 
-export { Dialog } from './components/dialog';
-export type { DialogProps } from './components/dialog';
+export { DialogRoot, DialogTrigger, DialogContent, DialogClose } from './components/dialog';
+export type { DialogRootProps } from './components/dialog';
 
-export { Form, useFormState } from './components/form';
-export type { FormFieldProps } from './components/form';
+export { Form, FormField, FormActions } from './components/form';
+export type { FormProps, FormFieldProps, FormActionsProps } from './components/form';

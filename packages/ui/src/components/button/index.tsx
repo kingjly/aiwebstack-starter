@@ -5,7 +5,7 @@
  *
  * AI 使用：从 @repo/ui/components/button 导入
  */
-import { Button as BaseButton } from '@base-ui-components/react/button';
+import { Button as BaseButton } from '@base-ui/react/button';
 import { forwardRef, type ComponentProps } from 'react';
 
 export interface ButtonProps extends ComponentProps<typeof BaseButton> {

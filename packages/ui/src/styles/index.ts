@@ -5,4 +5,4 @@
  * import '@repo/ui/styles'
  */
 
-export * from './index.css';
+import './index.css';

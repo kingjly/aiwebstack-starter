@@ -5,7 +5,6 @@
  *
  * AI 使用：import { PageHeader } from '@repo/ui/blocks/page-header'
  */
-import { type ComponentProps } from 'react';
 import { cn } from '@repo/utils';
 
 export interface PageHeaderProps {

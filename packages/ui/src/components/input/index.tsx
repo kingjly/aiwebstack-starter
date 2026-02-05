@@ -5,7 +5,7 @@
  *
  * AI 使用：从 @repo/ui/components/input 导入
  */
-import { Input as BaseInput } from '@base-ui-components/react/input';
+import { Input as BaseInput } from '@base-ui/react/input';
 import { forwardRef, type ComponentProps } from 'react';
 
 export interface InputProps extends ComponentProps<typeof BaseInput> {

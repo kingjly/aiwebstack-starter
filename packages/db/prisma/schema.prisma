@@ -6,13 +6,11 @@
 // 3. tRPC 路由会自动从 Schema 生成类型
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 // ==================== 示例模型 ====================
