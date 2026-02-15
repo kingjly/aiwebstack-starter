@@ -2,29 +2,20 @@
   "name": "@repo/config",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "files": [
-    "eslint.config.mjs",
-    "eslint-config.js",
-    "tsconfig.json",
-    "tailwind.config.ts"
-  ],
   "exports": {
-    "./eslint.config.mjs": "./eslint.config.mjs",
-    "./eslint-config.js": "./eslint-config.js",
-    "./tsconfig.json": "./tsconfig.json",
-    "./tailwind.config.ts": "./tailwind.config.ts"
+    "./typescript": "./src/typescript/base.json",
+    "./typescript/base": "./src/typescript/base.json",
+    "./typescript/react-library": "./src/typescript/react-library.json",
+    "./typescript/nextjs": "./src/typescript/nextjs.json",
+    "./eslint": "./src/eslint/base.js"
   },
+  "files": [
+    "src"
+  ],
   "devDependencies": {
-    "@eslint/js": "^9.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "eslint": "^9.0.0",
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-react": "^7.34.0",
-    "eslint-plugin-react-hooks": "^5.0.0",
-    "globals": "^15.0.0",
-    "tailwindcss": "^4.0.0",
-    "typescript": "^5.9.3"
+    "@eslint/js": "^9.18.0",
+    "eslint": "^9.18.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
   }
 }

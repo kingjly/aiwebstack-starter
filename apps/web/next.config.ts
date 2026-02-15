@@ -1,10 +1,12 @@
-import type { NextConfig } from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  transpilePackages: ['@repo/ui'],
-  experimental: {
-    optimizePackageImports: ['@repo/ui', 'lucide-react'],
+  output: "standalone",
+  transpilePackages: ["@repo/ui", "@repo/db", "@repo/api", "@repo/utils"],
+  images: {
+    formats: ["image/avif", "image/webp"],
   },
+  typedRoutes: true,
 };
 
 export default nextConfig;

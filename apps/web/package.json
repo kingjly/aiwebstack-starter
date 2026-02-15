@@ -1,40 +1,38 @@
 {
-  "name": "@repo/web",
+  "name": "web",
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3024",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "lint": "next lint"
   },
   "dependencies": {
-    "@base-ui/react": "^1.1.0",
     "@repo/api": "workspace:*",
+    "@repo/contracts": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
-    "@tanstack/react-query": "^5.0.0",
-    "@trpc/client": "^11.9.0",
-    "@trpc/react-query": "^11.9.0",
-    "@trpc/server": "^11.9.0",
-    "lucide-react": "^0.468.0",
-    "next": "^15.3.4",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "superjson": "^2.2.0",
-    "zod": "^3.24.0"
+    "@base-ui/react": "^1.0.0-rc.0",
+    "@tanstack/react-query": "^5.62.8",
+    "@trpc/client": "^11.10.0",
+    "@trpc/react-query": "^11.10.0",
+    "@trpc/server": "^11.10.0",
+    "better-auth": "1.4.18",
+    "next": "^16.1.6",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "superjson": "^2.2.6",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@repo/config": "workspace:*",
-    "@tanstack/react-query-devtools": "^5.91.3",
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^22.10.7",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   }
 }

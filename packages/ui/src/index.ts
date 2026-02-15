@@ -1,21 +1,49 @@
-/**
- * @repo/ui 统一导出
- *
- * AI 使用指南：
- * - 组件: import { Button } from '@repo/ui/components/button'
- * - 样式: import '@repo/ui/styles'
- * - 业务块: import { PageHeader } from '@repo/ui/blocks/page-header'
- */
+// 基础组件
+export { Button } from "./components/Button";
+export { Input } from "./components/Input";
+export { Label } from "./components/Label";
+export { Switch } from "./components/Switch";
+export { Checkbox } from "./components/Checkbox";
 
-// 组件导出
-export { Button } from './components/button';
-export type { ButtonProps } from './components/button';
+// 表格组件
+export {
+  Table,
+  TableHeader,
+  TableBody,
+  TableFooter,
+  TableRow,
+  TableHead,
+  TableCell,
+  TableCaption,
+} from "./components/Table";
 
-export { Input } from './components/input';
-export type { InputProps } from './components/input';
+// Dialog 组件
+export { Dialog, DialogTrigger, DialogPortal, DialogBackdrop, DialogPopup, DialogViewport, DialogClose, DialogTitle, DialogDescription, StyledDialogPopup } from "./components/Dialog";
 
-export { DialogRoot, DialogTrigger, DialogContent, DialogClose } from './components/dialog';
-export type { DialogRootProps } from './components/dialog';
+// Menu 组件
+export { Menu, MenuTrigger, MenuPopup, MenuItem } from "./components/Menu";
 
-export { Form, FormField, FormActions } from './components/form';
-export type { FormProps, FormFieldProps, FormActionsProps } from './components/form';
+// Popover 组件
+export { Popover, PopoverTrigger, PopoverPopup } from "./components/Popover";
+
+// Tabs 组件
+export { Tabs, TabsList, TabsTab, TabsPanel } from "./components/Tabs";
+
+// Tooltip 组件
+export { Tooltip, TooltipTrigger, TooltipPopup } from "./components/Tooltip";
+
+// 布局组件
+export { Sidebar } from "./components/Sidebar";
+export { Header } from "./components/Header";
+export { DashboardLayout } from "./components/DashboardLayout";
+
+// 表单组件
+export { Form, FormField, FormError } from "./components/Form";
+export { FormInput } from "./components/FormInput";
+export { FormSelect, Select } from "./components/FormSelect";
+
+// 其他组件
+export { ErrorBoundary } from "./components/ErrorBoundary";
+export { Badge } from "./components/Badge";
+export { Textarea } from "./components/Textarea";
+export { Pagination } from "./components/Pagination";
