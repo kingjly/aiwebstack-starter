@@ -52,12 +52,12 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
     <aside
       className={cn(
         "flex flex-col h-screen sticky top-0 transition-all duration-300",
-        "bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800",
+        "bg-white border-r border-gray-200",
         collapsed ? "w-16" : "w-64"
       )}
     >
       <div className={cn(
-        "flex items-center h-16 border-b border-slate-700/50",
+        "flex items-center h-16 border-b border-gray-200",
         collapsed ? "justify-center" : "justify-start px-5"
       )}>
         <div className="flex items-center gap-2">
@@ -65,7 +65,7 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
             <span className="text-white font-bold text-sm">AI</span>
           </div>
           {!collapsed && (
-            <span className="text-white font-semibold text-lg tracking-tight">AIWebStack</span>
+            <span className="text-gray-900 font-semibold text-lg tracking-tight">AIWebStack</span>
           )}
         </div>
       </div>
@@ -73,7 +73,11 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
       <nav className="flex-1 py-4 px-2">
         <ul className="space-y-1">
           {items.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + "/");
+            const isExactMatch = pathname === item.href;
+            const isChildMatch = item.href !== "/" && 
+              item.href !== "/dashboard" && 
+              pathname.startsWith(item.href + "/");
+            const isActive = isExactMatch || isChildMatch;
             const icon = item.icon || getDefaultIcon(item.href);
             
             return (
@@ -84,7 +88,7 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
                     "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
                     isActive
                       ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/25"
-                      : "text-slate-400 hover:bg-slate-800/50 hover:text-white"
+                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
                   )}
                   title={collapsed ? item.title : undefined}
                 >
@@ -105,10 +109,10 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
       </nav>
 
       {!collapsed && (
-        <div className="p-4 border-t border-slate-700/50">
-          <div className="bg-slate-800/50 rounded-lg p-3">
-            <p className="text-xs text-slate-400">AIWebStack v1.0</p>
-            <p className="text-xs text-slate-500 mt-1">现代 Web 开发脚手架</p>
+        <div className="p-4 border-t border-gray-200">
+          <div className="bg-gray-50 rounded-lg p-3">
+            <p className="text-xs text-gray-500">AIWebStack v1.0</p>
+            <p className="text-xs text-gray-400 mt-1">现代 Web 开发脚手架</p>
           </div>
         </div>
       )}
