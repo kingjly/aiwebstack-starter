@@ -26,16 +26,16 @@ export default function FormsDemoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-2xl px-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">表单组件示例</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-primary">表单组件示例</h1>
+          <p className="mt-2 text-secondary">
             使用 React Hook Form + Zod 实现的表单验证
           </p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
+        <div className="bg-surface border-border rounded-xl p-6">
           <Form
             schema={userSchema}
             onSubmit={handleSubmit}
@@ -88,7 +88,7 @@ export default function FormsDemoPage() {
               </button>
               <button
                 type="reset"
-                className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 transition-colors"
+                className="px-4 py-2 bg-muted text-secondary rounded-md hover:bg-muted/80 transition-colors"
               >
                 重置
               </button>
@@ -96,8 +96,8 @@ export default function FormsDemoPage() {
           </Form>
         </div>
 
-        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">代码示例</h2>
+        <div className="mt-8 bg-surface border-border rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">代码示例</h2>
           <pre className="text-sm bg-gray-900 text-gray-300 rounded-lg p-4 overflow-x-auto">
 {`import { Form, FormInput, FormSelect } from "@repo/ui";
 import { z } from "zod";

@@ -19,7 +19,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     return (
       <div className="space-y-2">
         {label && (
-          <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+          <label htmlFor={name} className="block text-sm font-medium text-secondary">
             {label}
             {props.required && <span className="text-red-500 ml-1">*</span>}
           </label>
@@ -34,17 +34,19 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
               ref={ref}
               id={name}
               className={cn(
-                "block w-full px-3 py-2 border rounded-md shadow-sm",
-                "placeholder-gray-400",
-                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500",
-                error ? "border-red-300" : "border-gray-300",
+                "block w-full h-10 px-3 py-2 rounded-lg border text-sm",
+                "bg-surface text-primary placeholder:text-muted-foreground",
+                "transition-colors duration-200",
+                "focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500",
+                error ? "border-red-500" : "border-border",
+                "disabled:cursor-not-allowed disabled:opacity-50",
                 className
               )}
             />
           )}
         />
         {description && !error && (
-          <p className="text-sm text-gray-500">{description}</p>
+          <p className="text-sm text-muted-foreground">{description}</p>
         )}
         <FormError message={error} />
       </div>

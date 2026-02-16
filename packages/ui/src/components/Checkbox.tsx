@@ -25,7 +25,7 @@ export function Checkbox({
   className,
 }: CheckboxProps) {
   const [isChecked, setIsChecked] = React.useState(defaultChecked ?? false);
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.checked;
     setIsChecked(newValue);
@@ -46,8 +46,9 @@ export function Checkbox({
         disabled={disabled}
         onChange={handleChange}
         className={cn(
-          "h-4 w-4 rounded border-gray-300 text-blue-600",
-          "focus:ring-2 focus:ring-blue-500 focus:ring-offset-2",
+          "h-4 w-4 rounded border-border bg-surface text-blue-600",
+          "transition-colors duration-200",
+          "focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-background",
           "disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
@@ -56,7 +57,7 @@ export function Checkbox({
         <label
           htmlFor={id}
           className={cn(
-            "text-sm text-gray-700",
+            "text-sm text-secondary",
             disabled && "cursor-not-allowed opacity-50"
           )}
         >

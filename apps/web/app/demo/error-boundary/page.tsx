@@ -13,7 +13,7 @@ function BuggyComponent() {
 
   return (
     <div className="text-center py-8">
-      <p className="text-gray-600 mb-4">点击按钮触发一个错误</p>
+      <p className="text-secondary mb-4">点击按钮触发一个错误</p>
       <Button
         variant="destructive"
         onClick={() => setShouldThrow(true)}
@@ -26,24 +26,24 @@ function BuggyComponent() {
 
 export default function ErrorBoundaryDemoPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-4xl px-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Error Boundary 示例</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-primary">Error Boundary 示例</h1>
+          <p className="mt-2 text-secondary">
             使用 react-error-boundary 实现的错误边界
           </p>
         </div>
 
-        <div className="bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">错误边界演示</h2>
+        <div className="bg-surface border-border rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">错误边界演示</h2>
           <ErrorBoundary>
             <BuggyComponent />
           </ErrorBoundary>
         </div>
 
-        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">使用方法</h2>
+        <div className="mt-8 bg-surface border-border rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">使用方法</h2>
           <pre className="text-sm bg-gray-900 text-gray-300 rounded-lg p-4 overflow-x-auto">
 {`import { ErrorBoundary } from "@repo/ui";
 
@@ -74,9 +74,9 @@ function App() {
           </pre>
         </div>
 
-        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">注意事项</h2>
-          <ul className="space-y-2 text-gray-600">
+        <div className="mt-8 bg-surface border-border rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">注意事项</h2>
+          <ul className="space-y-2 text-secondary">
             <li className="flex items-start gap-2">
               <span className="text-blue-500">•</span>
               <span>Error Boundary 只能捕获子组件渲染过程中的错误</span>

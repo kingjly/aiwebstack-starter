@@ -13,7 +13,7 @@ export function TabsList({ className, ...props }: TabsListProps) {
   return (
     <Tabs.List
       className={cn(
-        "inline-flex items-center gap-1 rounded-lg bg-gray-100 p-1",
+        "inline-flex items-center gap-1 rounded-lg bg-muted p-1",
         className
       )}
       {...props}
@@ -29,10 +29,10 @@ export function TabsTab({ className, ...props }: TabsTabProps) {
     <Tabs.Tab
       className={cn(
         "inline-flex items-center justify-center rounded-md px-3 py-1.5 text-sm font-medium",
-        "transition-colors",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500",
-        "data-[selected]:bg-white data-[selected]:text-gray-900 data-[selected]:shadow-sm",
-        "data-[hover]:text-gray-900",
+        "transition-colors duration-150 text-secondary",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-info",
+        "data-[selected]:bg-surface data-[selected]:text-primary data-[selected]:shadow-sm",
+        "data-[hover]:text-primary",
         "disabled:pointer-events-none disabled:opacity-50",
         className
       )}
@@ -47,7 +47,7 @@ export interface TabsPanelProps
 export function TabsPanel({ className, ...props }: TabsPanelProps) {
   return (
     <Tabs.Panel
-      className={cn("mt-4 focus-visible:outline-none", className)}
+      className={cn("mt-4 focus-visible:outline-none text-primary", className)}
       {...props}
     />
   );

@@ -36,6 +36,10 @@ export { Tooltip, TooltipTrigger, TooltipPopup } from "./components/Tooltip";
 export { Sidebar } from "./components/Sidebar";
 export { Header } from "./components/Header";
 export { DashboardLayout } from "./components/DashboardLayout";
+export { Page } from "./components/Page";
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./components/Card";
+export { Container } from "./components/Container";
+export { Section, SectionHeader, SectionTitle, SectionDescription, SectionContent } from "./components/Section";
 
 // 表单组件
 export { Form, FormField, FormError } from "./components/Form";

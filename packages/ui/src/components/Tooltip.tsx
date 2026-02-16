@@ -16,7 +16,12 @@ export function TooltipPopup({ className, ...props }: TooltipPopupProps) {
       <Tooltip.Positioner sideOffset={4}>
         <Tooltip.Popup
           className={cn(
-            "z-50 overflow-hidden rounded-md bg-gray-900 px-3 py-1.5 text-xs text-gray-50",
+            "z-50 overflow-hidden rounded-md",
+            "bg-primary px-3 py-1.5 text-xs text-surface",
+            "dark:bg-surface dark:text-primary dark:border dark:border-border",
+            "transition-opacity duration-150",
+            "data-[starting-style]:opacity-0",
+            "data-[ending-style]:opacity-0",
             className
           )}
           {...props}

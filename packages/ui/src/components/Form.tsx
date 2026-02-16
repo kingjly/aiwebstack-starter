@@ -54,14 +54,14 @@ export function FormField<T extends FieldValues>({
   return (
     <div className="space-y-2">
       {label && (
-        <label htmlFor={name} className="block text-sm font-medium text-gray-700">
+        <label htmlFor={name} className="block text-sm font-medium text-secondary">
           {label}
           {required && <span className="text-red-500 ml-1">*</span>}
         </label>
       )}
       {children}
       {description && (
-        <p className="text-sm text-gray-500">{description}</p>
+        <p className="text-sm text-muted-foreground">{description}</p>
       )}
     </div>
   );

@@ -39,6 +39,8 @@ export const userRouter = createRouter({
       z.object({
         email: z.string().email(),
         name: z.string().min(1).optional(),
+        password: z.string().min(6).optional(),
+        role: z.enum(["USER", "ADMIN"]).optional(),
       })
     )
     .mutation(async ({ input }) => {
@@ -46,7 +48,44 @@ export const userRouter = createRouter({
         data: {
           email: input.email,
           name: input.name ?? null,
+          role: input.role ?? "USER",
         } as any,
+      });
+    }),
+
+  update: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+        name: z.string().min(1).optional(),
+        email: z.string().email().optional(),
+        role: z.enum(["USER", "ADMIN"]).optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const { id, ...data } = input;
+      return prisma.user.update({
+        where: { id },
+        data: {
+          name: data.name,
+          email: data.email,
+          role: data.role,
+        },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          createdAt: true,
+        },
+      });
+    }),
+
+  delete: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ input }) => {
+      return prisma.user.delete({
+        where: { id: input.id },
       });
     }),
 });

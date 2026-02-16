@@ -36,11 +36,11 @@ export default function PlaygroundPage() {
   const [badgeCount, setBadgeCount] = useState(5);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-7xl px-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">组件展示场</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-primary">组件展示场</h1>
+          <p className="text-secondary mt-2">
             展示所有 UI 组件的实际使用效果
           </p>
         </div>
@@ -48,11 +48,11 @@ export default function PlaygroundPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           {/* 基础组件区 */}
           <section className="space-y-6">
-            <h2 className="text-xl font-semibold text-gray-900">基础组件</h2>
+            <h2 className="text-xl font-semibold text-primary">基础组件</h2>
 
             {/* Button 组 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Button 按钮</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Button 按钮</h3>
               <div className="space-y-4">
                 <div className="flex flex-wrap gap-3">
                   <Button variant="primary">Primary</Button>
@@ -71,8 +71,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Input 组 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Input 输入框</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Input 输入框</h3>
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="input-basic">基础输入</Label>
@@ -90,8 +90,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Switch 开关 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Switch 开关</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Switch 开关</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <Switch id="switch-default" />
@@ -109,8 +109,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Badge 徽章 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Badge 徽章</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Badge 徽章</h3>
               <div className="flex flex-wrap gap-3">
                 <span className="inline-flex items-center rounded-full bg-blue-100 text-blue-800 px-3 py-1 text-xs font-medium">
                   新消息
@@ -121,7 +121,7 @@ export default function PlaygroundPage() {
                 <span className="inline-flex items-center rounded-full bg-green-100 text-green-800 px-3 py-1 text-xs font-medium">
                   在线
                 </span>
-                <span className="inline-flex items-center rounded-full bg-gray-100 text-gray-800 px-3 py-1 text-xs font-medium">
+                <span className="inline-flex items-center rounded-full bg-muted text-secondary px-3 py-1 text-xs font-medium">
                   离线
                 </span>
                 <span className="inline-flex items-center rounded-full bg-red-100 text-red-800 px-3 py-1 text-xs font-medium">
@@ -136,11 +136,11 @@ export default function PlaygroundPage() {
 
           {/* 表单与反馈组件区 */}
           <section className="space-y-6 lg:col-span-2">
-            <h2 className="text-xl font-semibold text-gray-900">表单与反馈</h2>
+            <h2 className="text-xl font-semibold text-primary">表单与反馈</h2>
 
             {/* Dialog 对话框 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Dialog 对话框</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Dialog 对话框</h3>
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogTrigger asChild>
                   <Button>打开对话框</Button>
@@ -148,8 +148,8 @@ export default function PlaygroundPage() {
                 <DialogPopup>
                   {(close) => (
                     <>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">对话框标题</h3>
-                      <p className="text-sm text-gray-600 mb-4">
+                      <h3 className="text-lg font-semibold text-primary mb-2">对话框标题</h3>
+                      <p className="text-sm text-secondary mb-4">
                         这是一个使用 Base UI + Tailwind CSS 构建的对话框组件。支持键盘导航和焦点管理。
                       </p>
                       <div className="flex justify-end gap-2 mt-4">
@@ -167,8 +167,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Tabs 标签页 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Tabs 标签页</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Tabs 标签页</h3>
               <Tabs value={activeTab} onValueChange={setActiveTab}>
                 <TabsList>
                   <TabsTab value="tab1">概览</TabsTab>
@@ -176,12 +176,12 @@ export default function PlaygroundPage() {
                   <TabsTab value="tab3">关于</TabsTab>
                 </TabsList>
                 <TabsPanel value="tab1">
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                  <div className="rounded-lg border-border-muted bg-muted p-4">
                     这是概览标签页的内容，展示主要统计数据和关键指标。
                   </div>
                 </TabsPanel>
                 <TabsPanel value="tab2">
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                  <div className="rounded-lg border-border-muted bg-muted p-4">
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium">启用通知</span>
@@ -195,7 +195,7 @@ export default function PlaygroundPage() {
                   </div>
                 </TabsPanel>
                 <TabsPanel value="tab3">
-                  <div className="rounded-lg border border-gray-200 bg-gray-50 p-4">
+                  <div className="rounded-lg border-border-muted bg-muted p-4">
                     版本信息：v1.0.0
                   </div>
                 </TabsPanel>
@@ -203,8 +203,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Menu 菜单 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Menu 菜单</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Menu 菜单</h3>
               <Menu open={menuOpen} onOpenChange={setMenuOpen}>
                 <MenuTrigger asChild>
                   <Button>打开菜单</Button>
@@ -218,8 +218,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Tooltip 提示 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Tooltip 提示</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Tooltip 提示</h3>
               <div className="flex gap-4">
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -237,16 +237,16 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Popover 弹出框 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Popover 弹出框</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Popover 弹出框</h3>
               <Popover>
                 <PopoverTrigger asChild>
                   <Button>打开弹出框</Button>
                 </PopoverTrigger>
                 <PopoverPopup>
                   <div className="p-4">
-                    <h4 className="font-semibold text-gray-900">弹出框标题</h4>
-                    <p className="mt-2 text-sm text-gray-600">
+                    <h4 className="font-semibold text-primary">弹出框标题</h4>
+                    <p className="mt-2 text-sm text-secondary">
                       这是一个弹出框组件，可以包含更复杂的内容。
                     </p>
                   </div>
@@ -255,8 +255,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Textarea 文本域 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Textarea 文本域</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Textarea 文本域</h3>
               <div>
                 <Label htmlFor="textarea-basic">多行文本输入</Label>
                 <Textarea
@@ -271,11 +271,11 @@ export default function PlaygroundPage() {
 
           {/* 表单组件区 */}
           <section className="space-y-6 lg:col-span-2 xl:col-span-3">
-            <h2 className="text-xl font-semibold text-gray-900">表单组件</h2>
+            <h2 className="text-xl font-semibold text-primary">表单组件</h2>
 
             {/* Form 表单 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Form 表单</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Form 表单</h3>
               <Form
                 onSubmit={(data) => console.log("表单数据:", data)}
                 className="space-y-4"
@@ -312,8 +312,8 @@ export default function PlaygroundPage() {
             </div>
 
             {/* Select 选择器 */}
-            <div className="bg-white rounded-lg border border-gray-200 shadow p-6">
-              <h3 className="text-lg font-medium text-gray-900 mb-4">Select 选择器</h3>
+            <div className="bg-surface rounded-lg border-border shadow p-6">
+              <h3 className="text-lg font-medium text-primary mb-4">Select 选择器</h3>
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="select-plan">选择计划</Label>
@@ -335,7 +335,7 @@ export default function PlaygroundPage() {
 
         {/* 返回导航 */}
         <div className="mt-8 flex justify-center">
-          <Link href="/demo/components" className="text-gray-600 hover:text-gray-900">
+          <Link href="/demo/components" className="text-secondary hover:text-primary">
             ← 返回组件库列表
           </Link>
         </div>

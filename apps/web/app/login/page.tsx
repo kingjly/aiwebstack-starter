@@ -33,16 +33,16 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-background px-4">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+          <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-primary">
             登录账户
           </h2>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-md text-sm">
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-md text-sm">
               {error}
             </div>
           )}
@@ -74,7 +74,7 @@ export default function LoginPage() {
           </Button>
 
           <div className="text-center text-sm">
-            <span className="text-gray-600">还没有账户？</span>{" "}
+            <span className="text-secondary">还没有账户？</span>{" "}
             <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
               立即注册
             </Link>

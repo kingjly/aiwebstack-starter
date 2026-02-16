@@ -24,18 +24,18 @@ export default function TrpcDemoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-4xl px-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">tRPC 数据示例</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-primary">tRPC 数据示例</h1>
+          <p className="mt-2 text-secondary">
             类型安全的 API 调用，自动类型推导
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">创建用户</h2>
+          <div className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-lg font-semibold text-primary mb-4">创建用户</h2>
             <div className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">邮箱</Label>
@@ -74,9 +74,9 @@ export default function TrpcDemoPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-surface border-border rounded-xl p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">用户列表</h2>
+              <h2 className="text-lg font-semibold text-primary">用户列表</h2>
               <Button
                 variant="ghost"
                 size="sm"
@@ -87,39 +87,39 @@ export default function TrpcDemoPage() {
             </div>
 
             {isLoading ? (
-              <div className="text-center py-8 text-gray-500">加载中...</div>
+              <div className="text-center py-8 text-muted-foreground">加载中...</div>
             ) : users && users.length > 0 ? (
               <div className="space-y-3">
                 {users.map((user) => (
                   <div
                     key={user.id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-muted rounded-lg"
                   >
                     <div>
-                      <div className="font-medium text-gray-900">
+                      <div className="font-medium text-primary">
                         {user.name || "未设置"}
                       </div>
-                      <div className="text-sm text-gray-500">{user.email}</div>
+                      <div className="text-sm text-muted-foreground">{user.email}</div>
                     </div>
-                    <div className="text-xs text-gray-400">
+                    <div className="text-xs text-muted-foreground">
                       {user.role}
                     </div>
                   </div>
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">
+              <div className="text-center py-8 text-muted-foreground">
                 暂无用户数据
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-8 bg-white rounded-xl border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">代码示例</h2>
+        <div className="mt-8 bg-surface border-border rounded-xl p-6">
+          <h2 className="text-lg font-semibold text-primary mb-4">代码示例</h2>
           <div className="space-y-4">
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-2">服务端 Router</h3>
+              <h3 className="text-sm font-medium text-secondary mb-2">服务端 Router</h3>
               <pre className="text-sm bg-gray-900 text-gray-300 rounded-lg p-4 overflow-x-auto">
 {`// packages/api/src/routers/user.ts
 export const userRouter = createRouter({
@@ -140,7 +140,7 @@ export const userRouter = createRouter({
             </div>
 
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-2">客户端调用</h3>
+              <h3 className="text-sm font-medium text-secondary mb-2">客户端调用</h3>
               <pre className="text-sm bg-gray-900 text-gray-300 rounded-lg p-4 overflow-x-auto">
 {`// 客户端组件中
 const { data, isLoading } = trpc.user.list.useQuery();

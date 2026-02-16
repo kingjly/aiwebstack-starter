@@ -10,37 +10,70 @@ interface HeaderProps {
     image?: string | null;
   };
   onSignOut?: () => void;
+  theme?: "light" | "dark";
+  onToggleTheme?: () => void;
 }
 
-export function Header({ user, onSignOut }: HeaderProps) {
+export function Header({ user, onSignOut, theme = "light", onToggleTheme }: HeaderProps) {
   return (
-    <header className="h-16 bg-white/80 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-30">
+    <header className="h-16 bg-surface/80 backdrop-blur-md border-b border-border flex items-center justify-between px-6 sticky top-0 z-30">
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
+        <h1 className="text-lg font-semibold text-primary">Dashboard</h1>
       </div>
 
       <div className="flex items-center gap-3">
+        {/* 主题切换按钮 */}
+        {onToggleTheme && (
+          <button
+            onClick={onToggleTheme}
+            className={cn(
+              "w-9 h-9 rounded-lg flex items-center justify-center",
+              "text-muted-foreground hover:text-primary hover:bg-muted",
+              "transition-colors outline-none focus:ring-2 focus:ring-blue-500/20"
+            )}
+            title={theme === "dark" ? "切换到浅色模式" : "切换到深色模式"}
+          >
+            {theme === "dark" ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4"/>
+                <path d="M12 2v2"/>
+                <path d="M12 20v2"/>
+                <path d="m4.93 4.93 1.41 1.41"/>
+                <path d="m17.66 17.66 1.41 1.41"/>
+                <path d="M2 12h2"/>
+                <path d="M20 12h2"/>
+                <path d="m6.34 17.66-1.41 1.41"/>
+                <path d="m19.07 4.93-1.41 1.41"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+              </svg>
+            )}
+          </button>
+        )}
+
         {user && (
           <Menu.Root>
             <Menu.Trigger
               className={cn(
                 "flex items-center gap-2 px-3 py-1.5 rounded-lg",
-                "hover:bg-gray-100 transition-colors cursor-pointer outline-none"
+                "hover:bg-muted transition-colors cursor-pointer outline-none"
               )}
             >
               {user.image ? (
                 <img
                   src={user.image}
                   alt={user.name || "User"}
-                  className="w-8 h-8 rounded-full ring-2 ring-gray-200"
+                  className="w-8 h-8 rounded-full ring-2 ring-border"
                 />
               ) : (
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-medium ring-2 ring-gray-200">
+                <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-secondary text-sm font-medium ring-2 ring-border">
                   {(user.name || user.email || "U").charAt(0).toUpperCase()}
                 </div>
               )}
-              <span className="text-sm text-gray-700 font-medium">{user.name || user.email}</span>
-              <svg className="w-4 h-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <span className="text-sm text-secondary font-medium">{user.name || user.email}</span>
+              <svg className="w-4 h-4 text-muted-foreground" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m6 9 6 6 6-6"/>
               </svg>
             </Menu.Trigger>
@@ -53,18 +86,18 @@ export function Header({ user, onSignOut }: HeaderProps) {
               >
                 <Menu.Popup
                   className={cn(
-                    "min-w-56 bg-white rounded-xl shadow-xl border border-gray-200",
+                    "min-w-56 bg-surface rounded-xl shadow-xl border border-border",
                     "py-1.5 outline-none overflow-hidden"
                   )}
                 >
-                  <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-sm font-medium text-gray-800">{user.name || "用户"}</p>
-                    <p className="text-xs text-gray-500">{user.email}</p>
+                  <div className="px-4 py-2 border-b border-border">
+                    <p className="text-sm font-medium text-primary">{user.name || "用户"}</p>
+                    <p className="text-xs text-muted-foreground">{user.email}</p>
                   </div>
                   <Menu.Item
                     className={cn(
-                      "px-4 py-2.5 text-sm text-gray-600 cursor-pointer",
-                      "hover:bg-gray-50 hover:text-gray-900 outline-none flex items-center gap-2"
+                      "px-4 py-2.5 text-sm text-secondary cursor-pointer",
+                      "hover:bg-muted hover:text-primary outline-none flex items-center gap-2"
                     )}
                     onClick={() => window.location.href = "/dashboard/settings"}
                   >
@@ -76,8 +109,8 @@ export function Header({ user, onSignOut }: HeaderProps) {
                   </Menu.Item>
                   <Menu.Item
                     className={cn(
-                      "px-4 py-2.5 text-sm text-red-600 cursor-pointer",
-                      "hover:bg-red-50 outline-none flex items-center gap-2"
+                      "px-4 py-2.5 text-sm text-error cursor-pointer",
+                      "hover:bg-error/10 outline-none flex items-center gap-2"
                     )}
                     onClick={onSignOut}
                   >

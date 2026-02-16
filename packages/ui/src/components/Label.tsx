@@ -9,7 +9,7 @@ export function Label({ className, ...props }: LabelProps) {
   return (
     <label
       className={cn(
-        "text-sm font-medium text-gray-700",
+        "text-xs font-medium text-secondary",
         "disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}

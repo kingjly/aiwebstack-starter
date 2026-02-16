@@ -23,17 +23,17 @@ export const Pagination = ({
         <button
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage <= 1}
-          className="p-2 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="p-2 rounded-md border border-border bg-surface hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed text-primary transition-colors"
         >
           ‹
         </button>
-        <span className="text-sm text-gray-600">
-          第 {currentPage} / {totalPages} 页，共 {totalPages} 页
+        <span className="text-sm text-secondary">
+          {currentPage} / {totalPages}
         </span>
         <button
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage >= totalPages}
-          className="p-2 rounded-md border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="p-2 rounded-md border border-border bg-surface hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed text-primary transition-colors"
         >
           ›
         </button>

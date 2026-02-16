@@ -1,3 +1,46 @@
 @import "tailwindcss";
 
 @source "../../../packages/ui/src/**/*.{js,ts,jsx,tsx}";
+
+/* Dark mode via class strategy */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* 语义化颜色定义 */
+@theme {
+  /* 背景色 */
+  --color-background: #f9fafb;     /* 页面背景 */
+  --color-surface: #ffffff;         /* 卡片/容器背景 */
+  --color-muted: #f3f4f6;           /* 次要背景 */
+  --color-accent: #eff6ff;          /* 强调背景 */
+
+  /* 文字色 */
+  --color-primary: #111827;         /* 主要文字 */
+  --color-secondary: #4b5563;       /* 次要文字 */
+  --color-muted-foreground: #6b7280; /* 辅助文字 */
+
+  /* 边框色 */
+  --color-border: #e5e7eb;          /* 主要边框 */
+  --color-border-muted: #f3f4f6;    /* 次要边框 */
+
+  /* 状态色 */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+}
+
+.dark {
+  --color-background: #111827;
+  --color-surface: #1f2937;
+  --color-muted: #374151;
+  --color-accent: #1e3a5f;
+
+  --color-primary: #f9fafb;
+  --color-secondary: #d1d5db;
+  --color-muted-foreground: #9ca3af;
+
+  --color-border: #374151;
+  --color-border-muted: #1f2937;
+
+  /* 状态色在暗色模式下保持不变或微调 */
+}

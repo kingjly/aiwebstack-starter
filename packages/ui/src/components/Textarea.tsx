@@ -17,15 +17,17 @@ interface TextareaProps {
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ id, name, label, placeholder, required, rows = 3, disabled, className = "" }, ref) => {
     const textareaClasses = cn(
-      "w-full rounded-md border border-gray-300 shadow-sm focus:border-transparent focus:ring-2 focus:ring-inset focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-blue-500 disabled:cursor-not-allowed disabled:opacity-50",
-      disabled && "cursor-not-allowed opacity-50",
+      "w-full rounded-lg border border-border bg-surface text-primary placeholder:text-muted-foreground",
+      "transition-colors duration-200",
+      "focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20",
+      "disabled:cursor-not-allowed disabled:opacity-50",
       className
     );
 
     return (
       <div className="w-full">
         {label && (
-          <label htmlFor={id} className="block text-sm font-medium text-gray-700">
+          <label htmlFor={id} className="block text-sm font-medium text-secondary mb-1">
             {label}
             {required && <span className="text-red-500">*</span>}
           </label>

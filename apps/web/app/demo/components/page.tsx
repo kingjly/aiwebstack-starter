@@ -32,18 +32,18 @@ import {
 
 export default function ComponentsDemoPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-background py-12">
       <div className="mx-auto max-w-4xl px-6">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">UI 组件库</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-primary">UI 组件库</h1>
+          <p className="mt-2 text-secondary">
             基于 Base UI + Tailwind CSS v4 构建的组件库
           </p>
         </div>
 
         <div className="space-y-12">
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Button 按钮</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Button 按钮</h2>
             <div className="space-y-4">
               <div className="flex flex-wrap gap-3">
                 <Button variant="primary">Primary</Button>
@@ -61,8 +61,8 @@ export default function ComponentsDemoPage() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Input 输入框</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Input 输入框</h2>
             <div className="max-w-sm space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="input1">默认输入框</Label>
@@ -83,8 +83,8 @@ export default function ComponentsDemoPage() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Switch 开关</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Switch 开关</h2>
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <Switch id="switch1" />
@@ -101,13 +101,13 @@ export default function ComponentsDemoPage() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Dialog 对话框</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Dialog 对话框</h2>
             <Dialog>
               <DialogTrigger render={<Button>打开对话框</Button>} />
               <StyledDialogPopup>
                 <DialogTitle className="text-lg font-semibold">对话框标题</DialogTitle>
-                <DialogDescription className="mt-2 text-gray-600">
+                <DialogDescription className="mt-2 text-secondary">
                   这是一个使用 Base UI + Tailwind CSS 构建的对话框组件。
                   支持键盘导航和焦点管理。
                 </DialogDescription>
@@ -119,8 +119,8 @@ export default function ComponentsDemoPage() {
             </Dialog>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Tabs 标签页</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Tabs 标签页</h2>
             <Tabs defaultValue="tab1">
               <TabsList>
                 <TabsTab value="tab1">标签一</TabsTab>
@@ -128,43 +128,43 @@ export default function ComponentsDemoPage() {
                 <TabsTab value="tab3">标签三</TabsTab>
               </TabsList>
               <TabsPanel value="tab1">
-                <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 mt-2">
+                <div className="rounded-lg border-border-muted bg-muted p-4 mt-2">
                   这是标签一的内容，可以放置任何组件。
                 </div>
               </TabsPanel>
               <TabsPanel value="tab2">
-                <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 mt-2">
+                <div className="rounded-lg border-border-muted bg-muted p-4 mt-2">
                   这是标签二的内容，支持键盘导航。
                 </div>
               </TabsPanel>
               <TabsPanel value="tab3">
-                <div className="rounded-lg border border-gray-200 bg-gray-50 p-4 mt-2">
+                <div className="rounded-lg border-border-muted bg-muted p-4 mt-2">
                   这是标签三的内容，完全可定制样式。
                 </div>
               </TabsPanel>
             </Tabs>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Menu 菜单</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Menu 菜单</h2>
             <Menu>
               <MenuTrigger render={<Button variant="outline">打开菜单</Button>} />
               <MenuPopup>
-                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 rounded">
+                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-muted rounded">
                   📝 编辑
                 </MenuItem>
-                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 rounded">
+                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-muted rounded">
                   📋 复制
                 </MenuItem>
-                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-gray-100 rounded">
+                <MenuItem className="cursor-pointer px-3 py-2 text-sm hover:bg-muted rounded">
                   🗑️ 删除
                 </MenuItem>
               </MenuPopup>
             </Menu>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Tooltip 提示</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Tooltip 提示</h2>
             <div className="flex gap-4">
               <Tooltip>
                 <TooltipTrigger render={<Button variant="outline">悬停查看</Button>} />
@@ -177,14 +177,14 @@ export default function ComponentsDemoPage() {
             </div>
           </section>
 
-          <section className="bg-white rounded-xl border border-gray-200 p-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4">Popover 弹出框</h2>
+          <section className="bg-surface border-border rounded-xl p-6">
+            <h2 className="text-xl font-semibold text-primary mb-4">Popover 弹出框</h2>
             <Popover>
               <PopoverTrigger render={<Button variant="outline">打开弹出框</Button>} />
               <PopoverPopup>
                 <div className="p-4">
                   <h4 className="font-semibold">弹出框标题</h4>
-                  <p className="mt-2 text-sm text-gray-600">
+                  <p className="mt-2 text-sm text-secondary">
                     这是一个弹出框组件，可以包含更复杂的内容。
                   </p>
                 </div>

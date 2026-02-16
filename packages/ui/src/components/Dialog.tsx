@@ -39,13 +39,17 @@ export function StyledDialogPopup({
 }: StyledDialogPopupProps) {
   return (
     <Dialog.Portal>
-      <Dialog.Backdrop className="fixed inset-0 bg-black/50 z-40" />
+      <Dialog.Backdrop className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-200" />
       <Dialog.Popup
         className={cn(
           "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
           "w-full p-6",
-          "bg-white rounded-xl shadow-2xl",
+          "bg-surface rounded-xl shadow-2xl border border-border",
+          "text-primary",
           "focus:outline-none",
+          "transition-all duration-200",
+          "data-[starting-style]:opacity-0 data-[starting-style]:scale-95",
+          "data-[ending-style]:opacity-0 data-[ending-style]:scale-95",
           sizeStyles[size],
           className
         )}

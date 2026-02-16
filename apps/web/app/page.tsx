@@ -54,12 +54,12 @@ const techStack = [
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+    <div className="min-h-screen bg-background">
+      <header className="border-border bg-surface/80 backdrop-blur-sm sticky top-0 z-50 border-b">
         <div className="mx-auto max-w-6xl px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="text-2xl">🚀</span>
-            <span className="text-xl font-bold text-gray-900">AIWebStack</span>
+            <span className="text-xl font-bold text-primary">AIWebStack</span>
           </div>
           <nav className="flex items-center gap-4">
             <Link href="/login">
@@ -74,10 +74,10 @@ export default function HomePage() {
 
       <main>
         <section className="mx-auto max-w-6xl px-6 py-20 text-center">
-          <h1 className="text-5xl font-bold text-gray-900 tracking-tight">
+          <h1 className="text-5xl font-bold text-primary tracking-tight">
             全栈应用脚手架
           </h1>
-          <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-4 text-xl text-secondary max-w-2xl mx-auto">
             基于 Next.js 16、tRPC、Prisma、Base UI 和 Tailwind CSS v4
             构建的现代化全栈应用模板
           </p>
@@ -92,7 +92,7 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-12">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">
             功能示例
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -100,13 +100,13 @@ export default function HomePage() {
               <Link
                 key={feature.href}
                 href={feature.href}
-                className="group block p-6 bg-white rounded-xl border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-200"
+                className="group block p-6 bg-surface rounded-xl border border-border hover:border-blue-400 hover:shadow-lg transition-all duration-200"
               >
                 <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-semibold text-primary group-hover:text-blue-500 transition-colors">
                   {feature.title}
                 </h3>
-                <p className="mt-2 text-gray-600 text-sm">
+                <p className="mt-2 text-secondary text-sm">
                   {feature.description}
                 </p>
               </Link>
@@ -115,27 +115,27 @@ export default function HomePage() {
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-12">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">
             技术栈
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {techStack.map((tech) => (
               <div
                 key={tech.name}
-                className="bg-white rounded-lg border border-gray-200 p-4 text-center hover:shadow-md transition-shadow"
+                className="bg-surface rounded-lg border border-border p-4 text-center hover:shadow-md transition-shadow"
               >
                 <div className={`w-10 h-10 ${tech.color} rounded-lg mx-auto mb-3 flex items-center justify-center text-white text-xs font-bold`}>
                   {tech.name.charAt(0)}
                 </div>
-                <div className="font-medium text-gray-900">{tech.name}</div>
-                <div className="text-xs text-gray-500 mt-1">v{tech.version}</div>
+                <div className="font-medium text-primary">{tech.name}</div>
+                <div className="text-xs text-muted-foreground mt-1">v{tech.version}</div>
               </div>
             ))}
           </div>
         </section>
 
         <section className="mx-auto max-w-6xl px-6 py-12">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="text-3xl font-bold text-primary text-center mb-12">
             项目结构
           </h2>
           <div className="bg-gray-900 rounded-xl p-6 text-sm font-mono text-gray-300 overflow-x-auto">
@@ -159,8 +159,8 @@ export default function HomePage() {
         </section>
       </main>
 
-      <footer className="border-t border-gray-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-8 text-center text-gray-600">
+      <footer className="border-border bg-surface border-t">
+        <div className="mx-auto max-w-6xl px-6 py-8 text-center text-secondary">
           <p>AIWebStack Starter - 现代化全栈应用脚手架</p>
         </div>
       </footer>

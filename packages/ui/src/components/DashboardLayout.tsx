@@ -10,6 +10,8 @@ interface DashboardLayoutProps {
   sidebarItems: SidebarProps["items"];
   headerProps?: Omit<HeaderProps, "onSignOut">;
   onSignOut?: () => void;
+  theme?: "light" | "dark";
+  onToggleTheme?: () => void;
 }
 
 export function DashboardLayout({
@@ -17,14 +19,16 @@ export function DashboardLayout({
   sidebarItems,
   headerProps,
   onSignOut,
+  theme,
+  onToggleTheme,
 }: DashboardLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-background">
       <Sidebar items={sidebarItems} collapsed={sidebarCollapsed} />
       <div className={cn("flex-1 flex flex-col min-h-screen")}>
-        <Header {...headerProps} onSignOut={onSignOut} />
+        <Header {...headerProps} onSignOut={onSignOut} theme={theme} onToggleTheme={onToggleTheme} />
         <main className="flex-1 p-6">
           {children}
         </main>
@@ -33,8 +37,8 @@ export function DashboardLayout({
         onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
         className={cn(
           "fixed bottom-4 left-4 z-50 p-2 rounded-full",
-          "bg-gray-900 text-white shadow-lg",
-          "hover:bg-gray-800 transition-colors"
+          "bg-primary text-background shadow-lg",
+          "hover:bg-primary/90 transition-colors"
         )}
         aria-label={sidebarCollapsed ? "展开侧边栏" : "收起侧边栏"}
       >

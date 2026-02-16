@@ -52,20 +52,20 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
     <aside
       className={cn(
         "flex flex-col h-screen sticky top-0 transition-all duration-300",
-        "bg-white border-r border-gray-200",
+        "bg-surface border-r border-border",
         collapsed ? "w-16" : "w-64"
       )}
     >
       <div className={cn(
-        "flex items-center h-16 border-b border-gray-200",
+        "flex items-center h-16 border-b border-border",
         collapsed ? "justify-center" : "justify-start px-5"
       )}>
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+          <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
             <span className="text-white font-bold text-sm">AI</span>
           </div>
           {!collapsed && (
-            <span className="text-gray-900 font-semibold text-lg tracking-tight">AIWebStack</span>
+            <span className="text-primary font-semibold text-lg tracking-tight">AIWebStack</span>
           )}
         </div>
       </div>
@@ -74,12 +74,12 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
         <ul className="space-y-1">
           {items.map((item) => {
             const isExactMatch = pathname === item.href;
-            const isChildMatch = item.href !== "/" && 
-              item.href !== "/dashboard" && 
+            const isChildMatch = item.href !== "/" &&
+              item.href !== "/dashboard" &&
               pathname.startsWith(item.href + "/");
             const isActive = isExactMatch || isChildMatch;
             const icon = item.icon || getDefaultIcon(item.href);
-            
+
             return (
               <li key={item.href}>
                 <Link
@@ -87,8 +87,8 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
                   className={cn(
                     "flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 group",
                     isActive
-                      ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg shadow-blue-500/25"
-                      : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                      ? "bg-blue-600 text-white"
+                      : "text-secondary hover:bg-muted hover:text-primary"
                   )}
                   title={collapsed ? item.title : undefined}
                 >
@@ -109,10 +109,10 @@ export function Sidebar({ items, collapsed = false }: SidebarProps) {
       </nav>
 
       {!collapsed && (
-        <div className="p-4 border-t border-gray-200">
-          <div className="bg-gray-50 rounded-lg p-3">
-            <p className="text-xs text-gray-500">AIWebStack v1.0</p>
-            <p className="text-xs text-gray-400 mt-1">现代 Web 开发脚手架</p>
+        <div className="p-4 border-t border-border">
+          <div className="bg-muted rounded-lg p-3">
+            <p className="text-xs text-muted-foreground">AIWebStack v1.0</p>
+            <p className="text-xs text-muted-foreground/70 mt-1">现代 Web 开发脚手架</p>
           </div>
         </div>
       )}
