@@ -17,6 +17,10 @@ export {
   TableCaption,
 } from "./components/Table";
 
+// 高级数据表格
+export { DataTable } from "./components/DataTable";
+export type { DataTableProps, Column, SortDirection } from "./components/DataTable";
+
 // Dialog 组件
 export { Dialog, DialogTrigger, DialogPortal, DialogBackdrop, DialogPopup, DialogViewport, DialogClose, DialogTitle, DialogDescription, StyledDialogPopup } from "./components/Dialog";
 
