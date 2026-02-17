@@ -117,8 +117,8 @@ pnpm db:studio    # 打开 Prisma Studio
 
 ## 许可证
 
-MIT License
+[MIT License](LICENSE)
 
 ---
 
-Built with ❤️ using AIWebStack
+Built with AIWebStack
