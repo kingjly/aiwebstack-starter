@@ -2,8 +2,8 @@
 
 import { trpc } from "@/lib/trpc";
 import Link from "next/link";
-import { Button, Input, Label, Badge, Dialog, DialogClose, StyledDialogPopup, Pagination } from "@repo/ui";
-import { useState } from "react";
+import { Button, Input, Label, Badge, Dialog, DialogClose, StyledDialogPopup, DataTable, Column } from "@repo/ui";
+import { useState, useMemo } from "react";
 
 interface User {
   id: string;
@@ -17,16 +17,13 @@ export default function UsersPage() {
   const utils = trpc.useUtils();
   const { data: users, isPending } = trpc.user.list.useQuery();
 
-  const [searchQuery, setSearchQuery] = useState("");
   const [selectedRole, setSelectedRole] = useState("all");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const pageSize = 10;
 
   // 表单数据
   const [formData, setFormData] = useState({
@@ -64,30 +61,16 @@ export default function UsersPage() {
     },
   });
 
-  if (isPending) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-muted-foreground">加载中...</div>
-      </div>
-    );
-  }
-
-  const filteredUsers = (users ?? []).filter((user: User) => {
-    const matchesSearch = !searchQuery ||
-      user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesRole = selectedRole === "all" || user.role === selectedRole;
-    const matchesStatus = selectedStatus === "all" ||
-      (selectedStatus === "active" && user.email) ||
-      (selectedStatus === "inactive" && !user.email);
-    return matchesSearch && matchesRole && matchesStatus;
-  }) ?? [];
-
-  const totalPages = Math.ceil(filteredUsers.length / pageSize);
-  const paginatedUsers = filteredUsers.slice(
-    (currentPage - 1) * pageSize,
-    currentPage * pageSize
-  );
+  // 过滤数据（角色和状态）
+  const filteredData = useMemo(() => {
+    return (users ?? []).filter((user: User) => {
+      const matchesRole = selectedRole === "all" || user.role === selectedRole;
+      const matchesStatus = selectedStatus === "all" ||
+        (selectedStatus === "active" && user.email) ||
+        (selectedStatus === "inactive" && !user.email);
+      return matchesRole && matchesStatus;
+    });
+  }, [users, selectedRole, selectedStatus]);
 
   const resetForm = () => {
     setFormData({ name: "", email: "", password: "", role: "USER" });
@@ -158,6 +141,86 @@ export default function UsersPage() {
     { label: "活跃用户", value: activeCount, color: "text-green-600" },
   ];
 
+  // DataTable 列配置
+  const columns: Column<User>[] = [
+    {
+      key: "name",
+      title: "用户",
+      sortable: true,
+      render: (_, user) => (
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-secondary text-xs font-medium shrink-0">
+            {user.name?.charAt(0)?.toUpperCase() || user.email.charAt(0).toUpperCase()}
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-primary truncate">
+                {user.name || "未设置姓名"}
+              </span>
+              {user.role === "ADMIN" && (
+                <Badge variant="info" className="text-[10px] px-1.5 py-0">管理员</Badge>
+              )}
+            </div>
+            <div className="text-xs text-muted-foreground truncate">{user.email}</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: "status",
+      title: "状态",
+      width: "100px",
+      render: (_, user) => (
+        <Badge variant={user.email ? "success" : "default"}>
+          {user.email ? "已激活" : "未激活"}
+        </Badge>
+      ),
+    },
+    {
+      key: "createdAt",
+      title: "创建时间",
+      width: "120px",
+      sortable: true,
+      render: (value) => (
+        <span className="text-muted-foreground">
+          {value ? new Date(value as string).toLocaleDateString("zh-CN") : "-"}
+        </span>
+      ),
+    },
+    {
+      key: "actions",
+      title: "操作",
+      width: "140px",
+      render: (_, user) => (
+        <div className="flex items-center gap-1">
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground hover:text-primary h-7 px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleEdit(user);
+            }}
+          >
+            编辑
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-muted-foreground hover:text-error h-7 px-2"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedUser(user);
+              setDeleteDialogOpen(true);
+            }}
+          >
+            删除
+          </Button>
+        </div>
+      ),
+    },
+  ];
+
   return (
     <div className="space-y-6">
       {/* 页面头部 */}
@@ -187,134 +250,44 @@ export default function UsersPage() {
         ))}
       </div>
 
-      {/* 主内容卡片 */}
-      <div className="bg-surface rounded-lg border border-border">
-        {/* 工具栏 */}
-        <div className="px-5 py-4 border-b border-border">
-          <div className="flex flex-wrap items-center gap-3">
-            <div className="flex-1 min-w-[200px] max-w-sm">
-              <div className="relative">
-                <svg
-                  className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <Input
-                  placeholder="搜索用户名或邮箱..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-9"
-                />
-              </div>
-            </div>
+      {/* 筛选器 */}
+      <div className="flex items-center gap-3">
+        <select
+          value={selectedRole}
+          onChange={(e) => setSelectedRole(e.target.value)}
+          className="h-9 px-3 text-sm border border-border rounded-lg bg-surface text-primary focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        >
+          <option value="all">全部角色</option>
+          <option value="USER">普通用户</option>
+          <option value="ADMIN">管理员</option>
+        </select>
 
-            <div className="flex items-center gap-3">
-              <select
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-                className="h-9 px-3 text-sm border border-border rounded-lg bg-surface text-primary focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-              >
-                <option value="all">全部角色</option>
-                <option value="USER">普通用户</option>
-                <option value="ADMIN">管理员</option>
-              </select>
-
-              <select
-                value={selectedStatus}
-                onChange={(e) => setSelectedStatus(e.target.value)}
-                className="h-9 px-3 text-sm border border-border rounded-lg bg-surface text-primary focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-              >
-                <option value="all">全部状态</option>
-                <option value="active">已激活</option>
-                <option value="inactive">未激活</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        {/* 用户列表 */}
-        <div className="divide-y divide-border">
-          {paginatedUsers.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
-              <svg className="w-12 h-12 mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <p className="text-sm">暂无用户数据</p>
-            </div>
-          ) : (
-            paginatedUsers.map((user: User) => (
-              <div
-                key={user.id}
-                className="flex items-center justify-between px-5 py-3 hover:bg-muted/50 transition-colors"
-              >
-                <div className="flex items-center gap-3 min-w-0 flex-1">
-                  <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center text-secondary text-sm font-medium shrink-0">
-                    {user.name?.charAt(0)?.toUpperCase() || user.email.charAt(0).toUpperCase()}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-primary truncate">
-                        {user.name || "未设置姓名"}
-                      </span>
-                      {user.role === "ADMIN" && (
-                        <Badge variant="info" className="text-[10px] px-1.5 py-0">管理员</Badge>
-                      )}
-                    </div>
-                    <div className="text-xs text-muted-foreground truncate">{user.email}</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-6 text-xs text-muted-foreground">
-                  <Badge variant={user.email ? "success" : "default"}>
-                    {user.email ? "已激活" : "未激活"}
-                  </Badge>
-                  <span className="hidden sm:block w-24">
-                    {new Date(user.createdAt).toLocaleDateString("zh-CN")}
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-1 ml-4">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-muted-foreground hover:text-primary"
-                    onClick={() => handleEdit(user)}
-                  >
-                    编辑
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-muted-foreground hover:text-error"
-                    onClick={() => {
-                      setSelectedUser(user);
-                      setDeleteDialogOpen(true);
-                    }}
-                  >
-                    删除
-                  </Button>
-                </div>
-              </div>
-            ))
-          )}
-        </div>
-
-        {totalPages > 1 && (
-          <div className="px-5 py-3 border-t border-border flex items-center justify-between">
-            <span className="text-xs text-muted-foreground">
-              显示 {(currentPage - 1) * pageSize + 1}-{Math.min(currentPage * pageSize, filteredUsers.length)} / 共 {filteredUsers.length} 位用户
-            </span>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={setCurrentPage}
-            />
-          </div>
-        )}
+        <select
+          value={selectedStatus}
+          onChange={(e) => setSelectedStatus(e.target.value)}
+          className="h-9 px-3 text-sm border border-border rounded-lg bg-surface text-primary focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+        >
+          <option value="all">全部状态</option>
+          <option value="active">已激活</option>
+          <option value="inactive">未激活</option>
+        </select>
       </div>
+
+      {/* 数据表格 */}
+      <DataTable
+        columns={columns}
+        data={filteredData}
+        keyField="id"
+        loading={isPending}
+        searchFields={["name", "email"]}
+        searchPlaceholder="搜索用户名或邮箱..."
+        emptyText="暂无用户数据"
+        emptyIcon={
+          <svg className="w-12 h-12 mb-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        }
+      />
 
       {/* 新增用户弹窗 */}
       <Dialog open={createDialogOpen} onOpenChange={(open) => { setCreateDialogOpen(open); if (!open) resetForm(); }}>
