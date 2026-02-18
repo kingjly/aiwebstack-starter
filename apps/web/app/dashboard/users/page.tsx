@@ -145,21 +145,15 @@ export default function UsersPage() {
   const columns: Column<User>[] = [
     {
       key: "name",
-      title: "用户",
-      sortable: true,
+      title: "用户信息",
       render: (_, user) => (
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center text-secondary text-xs font-medium shrink-0">
+        <div className="flex items-center gap-3 py-1">
+          <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-medium shrink-0">
             {user.name?.charAt(0)?.toUpperCase() || user.email.charAt(0).toUpperCase()}
           </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="font-medium text-primary truncate">
-                {user.name || "未设置姓名"}
-              </span>
-              {user.role === "ADMIN" && (
-                <Badge variant="info" className="text-[10px] px-1.5 py-0">管理员</Badge>
-              )}
+          <div className="min-w-0 flex-1">
+            <div className="font-medium text-primary truncate">
+              {user.name || "未设置姓名"}
             </div>
             <div className="text-xs text-muted-foreground truncate">{user.email}</div>
           </div>
@@ -167,11 +161,24 @@ export default function UsersPage() {
       ),
     },
     {
+      key: "role",
+      title: "角色",
+      width: "100px",
+      align: "center",
+      sortable: true,
+      render: (_, user) => (
+        <Badge variant={user.role === "ADMIN" ? "info" : "default"} className="whitespace-nowrap">
+          {user.role === "ADMIN" ? "管理员" : "普通用户"}
+        </Badge>
+      ),
+    },
+    {
       key: "status",
       title: "状态",
-      width: "100px",
+      width: "80px",
+      align: "center",
       render: (_, user) => (
-        <Badge variant={user.email ? "success" : "default"}>
+        <Badge variant={user.email ? "success" : "warning"} className="whitespace-nowrap">
           {user.email ? "已激活" : "未激活"}
         </Badge>
       ),
@@ -179,10 +186,11 @@ export default function UsersPage() {
     {
       key: "createdAt",
       title: "创建时间",
-      width: "120px",
+      width: "110px",
+      align: "center",
       sortable: true,
       render: (value) => (
-        <span className="text-muted-foreground">
+        <span className="text-secondary text-sm whitespace-nowrap">
           {value ? new Date(value as string).toLocaleDateString("zh-CN") : "-"}
         </span>
       ),
@@ -190,13 +198,14 @@ export default function UsersPage() {
     {
       key: "actions",
       title: "操作",
-      width: "140px",
+      width: "120px",
+      align: "center",
       render: (_, user) => (
-        <div className="flex items-center gap-1">
+        <div className="flex items-center justify-center gap-1">
           <Button
             variant="ghost"
             size="sm"
-            className="text-muted-foreground hover:text-primary h-7 px-2"
+            className="h-8 px-2 text-secondary hover:text-primary whitespace-nowrap"
             onClick={(e) => {
               e.stopPropagation();
               handleEdit(user);
@@ -207,7 +216,7 @@ export default function UsersPage() {
           <Button
             variant="ghost"
             size="sm"
-            className="text-muted-foreground hover:text-error h-7 px-2"
+            className="h-8 px-2 text-secondary hover:text-error whitespace-nowrap"
             onClick={(e) => {
               e.stopPropagation();
               setSelectedUser(user);

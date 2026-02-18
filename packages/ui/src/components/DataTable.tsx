@@ -14,6 +14,7 @@ export interface Column<T> {
   title: string;
   width?: string;
   sortable?: boolean;
+  align?: "left" | "center" | "right";
   render?: (value: T[keyof T], record: T, index: number) => React.ReactNode;
 }
 
@@ -222,70 +223,81 @@ export function DataTable<T extends Record<string, unknown>>({
       )}
 
       {/* 表格 */}
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead>
-            <tr className="border-b border-border">
-              {columns.map((column) => (
-                <th
-                  key={String(column.key)}
-                  className={cn(
-                    "h-11 px-5 text-left text-xs font-medium text-muted-foreground",
-                    column.sortable && "cursor-pointer select-none hover:text-primary transition-colors",
-                    column.width && `w-[${column.width}]`
-                  )}
-                  style={column.width ? { width: column.width } : undefined}
-                  onClick={column.sortable ? () => handleSort(String(column.key)) : undefined}
-                >
-                  <div className="flex items-center gap-1">
-                    <span>{column.title}</span>
-                    {column.sortable && renderSortIcon(String(column.key))}
-                  </div>
-                </th>
-              ))}
+      <table className="w-full">
+        <thead>
+          <tr className="border-b border-border bg-muted/30">
+            {columns.map((column) => (
+              <th
+                key={String(column.key)}
+                className={cn(
+                  "h-10 px-4 text-xs font-medium text-secondary whitespace-nowrap",
+                  column.align === "center" && "text-center",
+                  column.align === "right" && "text-right",
+                  (!column.align || column.align === "left") && "text-left",
+                  column.sortable && "cursor-pointer select-none hover:text-primary transition-colors"
+                )}
+                style={column.width ? { width: column.width, maxWidth: column.width } : undefined}
+                onClick={column.sortable ? () => handleSort(String(column.key)) : undefined}
+              >
+                <div className={cn(
+                  "flex items-center gap-1.5 h-full",
+                  column.align === "center" && "justify-center",
+                  column.align === "right" && "justify-end"
+                )}>
+                  <span>{column.title}</span>
+                  {column.sortable && renderSortIcon(String(column.key))}
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-border">
+          {loading ? (
+            <tr>
+              <td colSpan={columns.length}>{renderLoading()}</td>
             </tr>
-          </thead>
-          <tbody className="divide-y divide-border">
-            {loading ? (
-              <tr>
-                <td colSpan={columns.length}>{renderLoading()}</td>
+          ) : paginatedData.length === 0 ? (
+            <tr>
+              <td colSpan={columns.length}>{renderEmpty()}</td>
+            </tr>
+          ) : (
+            paginatedData.map((record, index) => (
+              <tr
+                key={String(record[keyField])}
+                className={cn(
+                  "transition-colors hover:bg-muted/30",
+                  onRowClick && "cursor-pointer"
+                )}
+                onClick={onRowClick ? () => onRowClick(record) : undefined}
+              >
+                {columns.map((column) => {
+                  const value = getCellValue(record, column.key);
+                  return (
+                    <td
+                      key={String(column.key)}
+                      className={cn(
+                        "px-4 py-3 align-middle",
+                        column.align === "center" && "text-center",
+                        column.align === "right" && "text-right"
+                      )}
+                    >
+                      {column.render
+                        ? column.render(value as T[keyof T], record, (currentPage - 1) * pageSize + index)
+                        : <span className="text-sm text-primary">{value != null ? String(value) : "-"}</span>}
+                    </td>
+                  );
+                })}
               </tr>
-            ) : paginatedData.length === 0 ? (
-              <tr>
-                <td colSpan={columns.length}>{renderEmpty()}</td>
-              </tr>
-            ) : (
-              paginatedData.map((record, index) => (
-                <tr
-                  key={String(record[keyField])}
-                  className={cn(
-                    "transition-colors",
-                    onRowClick && "cursor-pointer hover:bg-muted/50"
-                  )}
-                  onClick={onRowClick ? () => onRowClick(record) : undefined}
-                >
-                  {columns.map((column) => {
-                    const value = getCellValue(record, column.key);
-                    return (
-                      <td key={String(column.key)} className="px-5 py-3 text-sm text-primary">
-                        {column.render
-                          ? column.render(value as T[keyof T], record, (currentPage - 1) * pageSize + index)
-                          : value != null ? String(value) : "-"}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+            ))
+          )}
+        </tbody>
+      </table>
 
       {/* 底部分页 */}
       {sortedData.length > 0 && (
-        <div className="px-5 py-3 border-t border-border flex items-center justify-between">
+        <div className="px-4 py-3 border-t border-border flex items-center justify-between">
           <span className="text-xs text-muted-foreground">
-            显示 {(currentPage - 1) * pageSize + 1}-{Math.min(currentPage * pageSize, sortedData.length)} / 共 {sortedData.length} 条
+            共 {sortedData.length} 条
           </span>
           {totalPages > 1 && (
             <Pagination
