@@ -1,124 +1,189 @@
 # AIWebStack Starter
 
-一个现代化的全栈 Web 应用脚手架，集成了 AI 友好的技术栈，开箱即用。
+[![GitHub stars](https://img.shields.io/github/stars/kingjly/aiwebstack-starter?style=social)](https://github.com/kingjly/aiwebstack-starter)
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?logo=typescript)](https://www.typescriptlang.org/)
 
-## 技术栈
+A modern full-stack web application starter optimized for AI-assisted development. Built with Next.js 16, tRPC, Prisma, and Tailwind CSS.
 
-| 类别 | 技术 |
-|------|------|
-| 框架 | Next.js 16 (App Router) |
-| 运行时 | React 19 + TypeScript |
-| 样式 | Tailwind CSS 4 + 语义化颜色系统 |
-| 组件 | Base UI + 自定义组件库 |
-| 认证 | Better Auth |
-| 数据库 | PostgreSQL + Prisma ORM |
-| API | tRPC (端到端类型安全) |
-| 包管理 | Turborepo + pnpm |
+**[中文文档](./README_CN.md)**
 
-## 特性
+## Features
 
-- **暗色主题**：完整的浅色/暗色主题切换，语义化颜色系统
-- **认证系统**：登录、注册、会话管理
-- **用户管理**：完整的 CRUD 操作示例
-- **组件库**：可复用的 UI 组件包
-- **类型安全**：端到端 TypeScript 类型推导
-- **响应式设计**：适配桌面和移动端
+- ⚡ **Next.js 16** - App Router with React 19
+- 🔒 **Authentication** - Better Auth with email/password
+- 🗄️ **Database** - PostgreSQL with Prisma ORM
+- 🔌 **API** - End-to-end type safety with tRPC v11
+- 🎨 **UI Components** - Base UI + Tailwind CSS 4
+- 🌓 **Dark Mode** - Semantic color system with auto dark mode
+- 📦 **Monorepo** - Turborepo + pnpm workspace
+- 🃏 **DataTable** - Built-in table with search, sort, pagination
 
-## 快速开始
+## Tech Stack
 
-### 环境要求
+| Category | Technology | Version |
+|----------|------------|---------|
+| Framework | [Next.js](https://nextjs.org/) | 16.x |
+| Runtime | [React](https://react.dev/) | 19.x |
+| Language | [TypeScript](https://www.typescriptlang.org/) | 5.9+ |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) | v4 |
+| Components | [Base UI](https://base-ui.com/) | 1.0-rc |
+| API | [tRPC](https://trpc.io/) | v11 |
+| Database | [PostgreSQL](https://www.postgresql.org/) | - |
+| ORM | [Prisma](https://www.prisma.io/) | 7.x |
+| Auth | [Better Auth](https://better-auth.com/) | 1.4+ |
+| Monorepo | [Turborepo](https://turbo.build/) | 2.8+ |
 
-- Node.js 18+
-- pnpm 8+
-- PostgreSQL
+## Quick Start
 
-### 安装
+### Use This Template
+
+Click the **"Use this template"** button at the top of this page to create a new repository.
+
+Or use GitHub CLI:
 
 ```bash
-# 克隆仓库
+gh repo create my-app --template kingjly/aiwebstack-starter
+```
+
+### Installation
+
+```bash
+# Clone the repository
 git clone https://github.com/kingjly/aiwebstack-starter.git
 cd aiwebstack-starter
 
-# 安装依赖
+# Install dependencies
 pnpm install
 
-# 配置环境变量
-cp .env.example .env
+# Setup environment variables
+cp apps/web/.env.example apps/web/.env
 ```
 
-### 配置环境变量
+### Environment Variables
 
 ```env
-# 数据库
-DATABASE_URL="postgresql://user:password@localhost:5432/aiwebstack"
+# Database
+DATABASE_URL="postgresql://user:password@localhost:5432/mydb"
 
 # Better Auth
-BETTER_AUTH_SECRET="your-secret-key"
-BETTER_AUTH_URL="http://localhost:3000"
+BETTER_AUTH_SECRET="your-secret-key-at-least-32-characters"
+BETTER_AUTH_URL="http://localhost:3024"
 ```
 
-### 数据库迁移
+### Database Setup
 
 ```bash
 pnpm db:push
 ```
 
-### 启动开发服务器
+### Development
 
 ```bash
 pnpm dev
 ```
 
-访问 http://localhost:3000
+Open [http://localhost:3024](http://localhost:3024) in your browser.
 
-## 项目结构
+## Project Structure
 
 ```
 aiwebstack-starter/
 ├── apps/
-│   ├── web/          # Next.js 应用
-│   └── api/          # API 服务 (可选独立部署)
+│   └── web/                 # Next.js application
+│       ├── app/             # App Router pages
+│       ├── lib/             # Utilities
+│       └── components/      # App components
 ├── packages/
-│   ├── ui/           # 共享 UI 组件库
-│   ├── api/          # tRPC 路由定义
-│   ├── db/           # Prisma 数据库
-│   ├── auth/         # 认证配置
-│   └── utils/        # 工具函数
-└── turbo.json        # Turborepo 配置
+│   ├── api/                 # tRPC routers
+│   ├── db/                  # Prisma schema & client
+│   ├── ui/                  # Shared UI components
+│   ├── auth/                # Auth configuration
+│   └── utils/               # Shared utilities
+├── turbo.json
+└── pnpm-workspace.yaml
 ```
 
-## 可用脚本
+## Available Scripts
 
 ```bash
-pnpm dev          # 启动开发服务器
-pnpm build        # 构建所有应用
-pnpm lint         # 代码检查
-pnpm db:push      # 推送数据库变更
-pnpm db:studio    # 打开 Prisma Studio
+pnpm dev          # Start development server
+pnpm build        # Build all packages and apps
+pnpm lint         # Run ESLint
+pnpm typecheck    # Run TypeScript check
+
+# Database
+pnpm db:push      # Push schema to database
+pnpm db:generate  # Generate Prisma client
+pnpm db:studio    # Open Prisma Studio
 ```
 
-## 组件库
+## UI Components
 
-包含以下可复用组件：
+Available components in `@repo/ui`:
 
-- `Button` - 按钮组件 (多种变体)
-- `Input` / `Textarea` - 输入组件
-- `Dialog` - 对话框
-- `Badge` - 徽章
-- `Table` - 表格
-- `Pagination` - 分页
-- `Switch` - 开关
-- `Checkbox` - 复选框
-- `Tabs` - 标签页
-- `Menu` - 菜单
-- `Tooltip` - 提示
-- `Popover` - 弹出框
-- 以及更多...
+| Category | Components |
+|----------|------------|
+| **Basic** | Button, Input, Label, Switch, Checkbox, Textarea |
+| **Table** | Table, DataTable, TableHeader, TableBody, TableRow, TableCell |
+| **Dialog** | Dialog, DialogTrigger, DialogPopup, DialogClose |
+| **Navigation** | Menu, Tabs, Sidebar, Header |
+| **Overlay** | Popover, Tooltip |
+| **Layout** | Page, Card, Container, Section, DashboardLayout |
+| **Form** | Form, FormField, FormInput, FormSelect |
+| **Other** | Badge, Pagination, ErrorBoundary |
 
-## 许可证
+### DataTable Example
+
+```tsx
+import { DataTable, Column } from "@repo/ui";
+
+const columns: Column<User>[] = [
+  { key: "name", title: "Name", sortable: true },
+  { key: "email", title: "Email", sortable: true },
+  { key: "role", title: "Role", width: "100px", align: "center" },
+];
+
+<DataTable
+  columns={columns}
+  data={users}
+  keyField="id"
+  searchFields={["name", "email"]}
+  searchPlaceholder="Search users..."
+/>
+```
+
+## Semantic Color System
+
+Use semantic colors for automatic dark mode support:
+
+```tsx
+// ✅ Recommended - Auto dark mode
+<div className="bg-surface text-primary border-border">
+
+// ❌ Avoid
+<div className="bg-white text-gray-900 dark:bg-gray-800 dark:text-white">
+```
+
+| Variable | Usage |
+|----------|-------|
+| `bg-background` | Page background |
+| `bg-surface` | Card/container background |
+| `bg-muted` | Secondary background |
+| `text-primary` | Primary text |
+| `text-secondary` | Secondary text |
+| `text-muted-foreground` | Helper text |
+| `border-border` | Primary border |
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
 
 [MIT License](./LICENSE)
 
 ---
 
-Built with ❤️ using AIWebStack
+Built with ❤️ by [kingjly](https://github.com/kingjly)
