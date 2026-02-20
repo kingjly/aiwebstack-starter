@@ -20,6 +20,18 @@ A modern full-stack web application starter optimized for AI-assisted developmen
 - 📦 **Monorepo** - Turborepo + pnpm workspace
 - 🃏 **DataTable** - Built-in table with search, sort, pagination
 
+## Screenshots
+
+### Dashboard (Light/Dark)
+
+<img src="./screenshots/dashboard-light.png" width="49%" alt="Dashboard Light" />
+<img src="./screenshots/dashboard-dark.png" width="49%" alt="Dashboard Dark" />
+
+### User Management with DataTable
+
+<img src="./screenshots/users-light.png" width="49%" alt="Users Light" />
+<img src="./screenshots/users-dark.png" width="49%" alt="Users Dark" />
+
 ## Tech Stack
 
 | Category | Technology | Version |

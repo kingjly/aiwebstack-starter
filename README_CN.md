@@ -20,6 +20,18 @@
 - 📦 **Monorepo** - Turborepo + pnpm 工作区
 - 🃏 **数据表格** - 内置搜索、排序、分页
 
+## 预览截图
+
+### Dashboard（亮色/暗色）
+
+<img src="./screenshots/dashboard-light.png" width="49%" alt="Dashboard 亮色" />
+<img src="./screenshots/dashboard-dark.png" width="49%" alt="Dashboard 暗色" />
+
+### 用户管理（DataTable 组件）
+
+<img src="./screenshots/users-light.png" width="49%" alt="用户管理 亮色" />
+<img src="./screenshots/users-dark.png" width="49%" alt="用户管理 暗色" />
+
 ## 技术栈
 
 | 类别 | 技术 | 版本 |
