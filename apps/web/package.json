@@ -6,7 +6,8 @@
     "dev": "next dev -p 3024",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -27,6 +28,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@repo/config": "workspace:*",
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^22.19.15",

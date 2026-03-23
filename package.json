@@ -9,6 +9,7 @@
     "lint": "turbo lint",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
+    "test:e2e": "turbo test:e2e",
     "clean": "turbo clean && rm -rf node_modules",
     "db:generate": "turbo db:generate",
     "db:push": "turbo db:push",
