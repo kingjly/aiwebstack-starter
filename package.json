@@ -17,11 +17,15 @@
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\""
   },
   "devDependencies": {
-    "prettier": "^3.4.2",
-    "turbo": "^2.8.3",
+    "prettier": "^3.8.1",
+    "turbo": "^2.8.20",
     "typescript": "^5.9.3"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["@prisma/engines", "prisma", "sharp"]
+    "onlyBuiltDependencies": [
+      "@prisma/engines",
+      "prisma",
+      "sharp"
+    ]
   }
 }

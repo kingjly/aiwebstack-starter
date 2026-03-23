@@ -7,15 +7,22 @@ import {
   Switch,
   Dialog,
   DialogTrigger,
-  DialogPopup,
+  StyledDialogPopup as DialogPopup,
   DialogClose,
   Tabs,
   TabsList,
   TabsTab,
   TabsPanel,
   Menu,
+  MenuTrigger,
+  MenuPopup,
+  MenuItem,
   Tooltip,
+  TooltipTrigger,
+  TooltipPopup,
   Popover,
+  PopoverTrigger,
+  PopoverPopup,
   Form,
   FormInput,
   FormSelect,
@@ -142,26 +149,22 @@ export default function PlaygroundPage() {
             <div className="bg-surface rounded-lg border-border shadow p-6">
               <h3 className="text-lg font-medium text-primary mb-4">Dialog 对话框</h3>
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-                <DialogTrigger asChild>
-                  <Button>打开对话框</Button>
+                <DialogTrigger render={<Button />}>
+                  打开对话框
                 </DialogTrigger>
                 <DialogPopup>
-                  {(close) => (
-                    <>
-                      <h3 className="text-lg font-semibold text-primary mb-2">对话框标题</h3>
-                      <p className="text-sm text-secondary mb-4">
-                        这是一个使用 Base UI + Tailwind CSS 构建的对话框组件。支持键盘导航和焦点管理。
-                      </p>
-                      <div className="flex justify-end gap-2 mt-4">
-                        <DialogClose asChild onClick={close}>
-                          <Button variant="outline">取消</Button>
-                        </DialogClose>
-                        <DialogClose asChild onClick={close}>
-                          <Button>确认</Button>
-                        </DialogClose>
-                      </div>
-                    </>
-                  )}
+                  <h3 className="text-lg font-semibold text-primary mb-2">对话框标题</h3>
+                  <p className="text-sm text-secondary mb-4">
+                    这是一个使用 Base UI + Tailwind CSS 构建的对话框组件。支持键盘导航和焦点管理。
+                  </p>
+                  <div className="flex justify-end gap-2 mt-4">
+                    <DialogClose render={<Button variant="outline" />} onClick={() => setDialogOpen(false)}>
+                      取消
+                    </DialogClose>
+                    <DialogClose render={<Button />} onClick={() => setDialogOpen(false)}>
+                      确认
+                    </DialogClose>
+                  </div>
                 </DialogPopup>
               </Dialog>
             </div>
@@ -206,8 +209,8 @@ export default function PlaygroundPage() {
             <div className="bg-surface rounded-lg border-border shadow p-6">
               <h3 className="text-lg font-medium text-primary mb-4">Menu 菜单</h3>
               <Menu open={menuOpen} onOpenChange={setMenuOpen}>
-                <MenuTrigger asChild>
-                  <Button>打开菜单</Button>
+                <MenuTrigger render={<Button />}>
+                  打开菜单
                 </MenuTrigger>
                 <MenuPopup>
                   <MenuItem>📝 编辑</MenuItem>
@@ -222,14 +225,14 @@ export default function PlaygroundPage() {
               <h3 className="text-lg font-medium text-primary mb-4">Tooltip 提示</h3>
               <div className="flex gap-4">
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="outline">悬停查看</Button>
+                  <TooltipTrigger render={<Button variant="outline" />}>
+                    悬停查看
                   </TooltipTrigger>
                   <TooltipPopup>这是一个提示信息</TooltipPopup>
                 </Tooltip>
                 <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button variant="ghost">另一个提示</Button>
+                  <TooltipTrigger render={<Button variant="ghost" />}>
+                    另一个提示
                   </TooltipTrigger>
                   <TooltipPopup>支持任意内容</TooltipPopup>
                 </Tooltip>
@@ -240,8 +243,8 @@ export default function PlaygroundPage() {
             <div className="bg-surface rounded-lg border-border shadow p-6">
               <h3 className="text-lg font-medium text-primary mb-4">Popover 弹出框</h3>
               <Popover>
-                <PopoverTrigger asChild>
-                  <Button>打开弹出框</Button>
+                <PopoverTrigger render={<Button />}>
+                  打开弹出框
                 </PopoverTrigger>
                 <PopoverPopup>
                   <div className="p-4">

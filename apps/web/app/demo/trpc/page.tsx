@@ -68,7 +68,7 @@ export default function TrpcDemoPage() {
                   {createUser.error.message}
                 </p>
               )}
-              {createUser.success && (
+              {createUser.isSuccess && (
                 <p className="text-sm text-green-600">用户创建成功！</p>
               )}
             </div>

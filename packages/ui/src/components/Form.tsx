@@ -1,13 +1,13 @@
 "use client";
 
-import { useForm, FormProvider, UseFormProps, FieldValues, Path } from "react-hook-form";
+import { useForm, FormProvider, UseFormProps, FieldValues, Path, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { cn } from "@repo/utils";
 
 interface FormProps<T extends FieldValues> extends Omit<UseFormProps<T>, "resolver"> {
-  schema?: z.ZodType<T>;
-  onSubmit: (data: T) => void | Promise<void>;
+  schema?: z.ZodType<any, any, any>;
+  onSubmit: SubmitHandler<T>;
   children: React.ReactNode;
   className?: string;
 }

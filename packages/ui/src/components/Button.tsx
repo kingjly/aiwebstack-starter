@@ -29,24 +29,23 @@ const sizeStyles: Record<string, string> = {
   lg: "h-12 px-6 text-base",
 };
 
-export function Button({
-  className,
-  variant = "primary",
-  size = "md",
-  ...props
-}: ButtonProps) {
-  return (
-    <BaseButton
-      className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-lg font-medium",
-        "transition-colors duration-150",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-surface",
-        "disabled:pointer-events-none disabled:opacity-50",
-        variantStyles[variant],
-        sizeStyles[size],
-        className
-      )}
-      {...props}
-    />
-  );
-}
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "primary", size = "md", ...props }, ref) => {
+    return (
+      <BaseButton
+        ref={ref}
+        className={cn(
+          "inline-flex items-center justify-center gap-2 rounded-lg font-medium",
+          "transition-colors duration-150",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 dark:ring-offset-surface",
+          "disabled:pointer-events-none disabled:opacity-50",
+          variantStyles[variant],
+          sizeStyles[size],
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+);
+Button.displayName = "Button";

@@ -61,49 +61,57 @@ export default function RegisterPage() {
             </div>
           )}
 
-          <Input
-            id="name"
-            label="用户名"
-            type="text"
-            autoComplete="name"
-            required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="您的名字"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="name">用户名</Label>
+            <Input
+              id="name"
+              type="text"
+              autoComplete="name"
+              required
+              value={name}
+              onChange={(e: any) => setName(e.target.value)}
+              placeholder="张三"
+            />
+          </div>
 
-          <Input
-            id="email"
-            label="邮箱地址"
-            type="email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="email">邮箱地址</Label>
+            <Input
+              id="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e: any) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+            />
+          </div>
 
-          <Input
-            id="password"
-            label="密码"
-            type="password"
-            autoComplete="new-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="至少8个字符"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="password">密码</Label>
+            <Input
+              id="password"
+              type="password"
+              autoComplete="new-password"
+              required
+              value={password}
+              onChange={(e: any) => setPassword(e.target.value)}
+              placeholder="••••••••"
+            />
+          </div>
 
-          <Input
-            id="confirmPassword"
-            label="确认密码"
-            type="password"
-            autoComplete="new-password"
-            required
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            placeholder="再次输入密码"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword">确认密码</Label>
+            <Input
+              id="confirmPassword"
+              type="password"
+              autoComplete="new-password"
+              required
+              value={confirmPassword}
+              onChange={(e: any) => setConfirmPassword(e.target.value)}
+              placeholder="••••••••"
+            />
+          </div>
 
           <Button type="submit" disabled={loading} className="w-full">
             {loading ? "注册中..." : "注册"}

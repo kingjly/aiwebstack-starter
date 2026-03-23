@@ -4,6 +4,7 @@ import { ErrorBoundary as ReactErrorBoundary, FallbackProps } from "react-error-
 import { cn } from "@repo/utils";
 
 function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
+  const errorMessage = error instanceof Error ? error.message : String(error);
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
       <div className="max-w-md w-full text-center">
@@ -24,7 +25,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
         </div>
         <h2 className="text-xl font-semibold text-gray-900 mb-2">出现了一些问题</h2>
         <p className="text-gray-600 mb-4">
-          {error.message || "发生了意外错误，请稍后重试"}
+          {errorMessage || "发生了意外错误，请稍后重试"}
         </p>
         <div className="space-y-2">
           <button
@@ -56,7 +57,7 @@ function ErrorFallback({ error, resetErrorBoundary }: FallbackProps) {
 interface ErrorBoundaryProps {
   children: React.ReactNode;
   fallback?: React.ComponentType<FallbackProps>;
-  onError?: (error: Error, info: React.ErrorInfo) => void;
+  onError?: (error: unknown, info: React.ErrorInfo) => void;
 }
 
 export function ErrorBoundary({ children, fallback, onError }: ErrorBoundaryProps) {

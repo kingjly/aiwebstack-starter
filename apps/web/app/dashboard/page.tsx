@@ -125,7 +125,7 @@ export default function DashboardPage() {
                   </tr>
                   <tr>
                     <td className="py-2.5 text-muted-foreground">角色</td>
-                    <td className="py-2.5 text-primary text-right">{session?.user?.role || "USER"}</td>
+                    <td className="py-2.5 text-primary text-right">{(session?.user as any)?.role || "USER"}</td>
                   </tr>
                 </tbody>
               </table>
@@ -142,7 +142,7 @@ export default function DashboardPage() {
                 {quickActions.map((action) => (
                   <Link
                     key={action.label}
-                    href={action.href}
+                    href={action.href as any}
                     className="flex items-center justify-center h-9 px-3 rounded-lg bg-muted hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
                   >
                     <span className="text-xs font-medium text-primary">{action.label}</span>

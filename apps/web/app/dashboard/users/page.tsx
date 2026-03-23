@@ -284,8 +284,8 @@ export default function UsersPage() {
 
       {/* 数据表格 */}
       <DataTable
-        columns={columns}
-        data={filteredData}
+        columns={columns as any}
+        data={filteredData as any}
         keyField="id"
         loading={isPending}
         searchFields={["name", "email"]}

@@ -6,7 +6,8 @@ interface Session {
     id: string;
     email: string;
     name?: string | null;
-    role: string;
+    image?: string | null;
+    role?: string;
   };
 }
 

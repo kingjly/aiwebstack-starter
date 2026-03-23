@@ -47,27 +47,31 @@ export default function LoginPage() {
             </div>
           )}
 
-          <Input
-            id="email"
-            label="邮箱地址"
-            type="email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="your@email.com"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="email">邮箱地址</Label>
+            <Input
+              id="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e: any) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+            />
+          </div>
 
-          <Input
-            id="password"
-            label="密码"
-            type="password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••"
-          />
+          <div className="space-y-2">
+            <Label htmlFor="password">密码</Label>
+            <Input
+              id="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e: any) => setPassword(e.target.value)}
+              placeholder="••••••••"
+            />
+          </div>
 
           <Button type="submit" disabled={loading} className="w-full">
             {loading ? "登录中..." : "登录"}

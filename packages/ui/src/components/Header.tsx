@@ -3,7 +3,7 @@
 import { Menu } from "@base-ui/react/menu";
 import { cn } from "@repo/utils";
 
-interface HeaderProps {
+export interface HeaderProps {
   user?: {
     name?: string | null;
     email?: string | null;

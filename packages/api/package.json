@@ -12,11 +12,11 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@prisma/client": "^7.3.0",
+    "@prisma/client": "^7.5.0",
     "@repo/db": "workspace:*",
-    "@trpc/server": "^11.10.0",
+    "@trpc/server": "^11.14.1",
     "superjson": "^2.2.6",
-    "zod": "^3.23.8"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
